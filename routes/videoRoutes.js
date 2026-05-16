@@ -6,7 +6,7 @@ const streamifier = require("streamifier");
 
 const Video = require("../models/Video");
 
-const auth = require("../Middleware/authMiddleware");
+const auth = require("../middleware/authMiddleware");
 
 const cloudinary = require("../config/cloudinary");
 
