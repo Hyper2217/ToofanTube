@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TOOFAN Tube</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:70px;
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(10px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+z-index:1000;
+border-bottom:1px solid #00ffff55;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#00ffff;
+text-shadow:0 0 15px cyan;
+}
+
+.search-box{
+width:50%;
+display:flex;
+align-items:center;
+background:#111827;
+border:1px solid #00ffff66;
+border-radius:30px;
+overflow:hidden;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+background:transparent;
+border:none;
+outline:none;
+color:white;
+font-size:16px;
+}
+
+.search-box button{
+padding:12px 20px;
+background:#00ffff;
+border:none;
+cursor:pointer;
+font-size:18px;
+color:black;
+font-weight:bold;
+}
+
+.nav-icons{
+display:flex;
+gap:20px;
+font-size:22px;
+}
+
+.nav-icons i{
+cursor:pointer;
+transition:0.3s;
+}
+
+.nav-icons i:hover{
+color:#00ffff;
+transform:scale(1.1);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+top:70px;
+left:0;
+width:240px;
+height:100%;
+background:#0b1120;
+padding-top:20px;
+border-right:1px solid #00ffff33;
+overflow-y:auto;
+}
+
+.sidebar a{
+display:flex;
+align-items:center;
+gap:15px;
+padding:15px 20px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+font-size:17px;
+}
+
+.sidebar a:hover{
+background:#00ffff22;
+color:#00ffff;
+}
+
+/* MAIN CONTENT */
+
+.main{
+margin-left:240px;
+padding:100px 25px 30px;
+}
+
+/* BANNER */
+
+.banner{
+height:250px;
+border-radius:20px;
+background:
+linear-gradient(rgba(0,0,0,0.6),
+rgba(0,0,0,0.7)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+margin-bottom:30px;
+border:1px solid #00ffff44;
+box-shadow:0 0 30px #00ffff22;
+}
+
+.banner h1{
+font-size:55px;
+color:#00ffff;
+text-shadow:0 0 20px cyan;
+}
+
+.banner p{
+margin-top:10px;
+font-size:18px;
+color:#ddd;
+}
+
+/* CATEGORY BUTTONS */
+
+.categories{
+display:flex;
+gap:15px;
+overflow-x:auto;
+padding-bottom:15px;
+margin-bottom:25px;
+}
+
+.categories button{
+padding:10px 20px;
+border:none;
+border-radius:25px;
+background:#111827;
+color:white;
+cursor:pointer;
+transition:0.3s;
+border:1px solid #00ffff55;
+}
+
+.categories button:hover{
+background:#00ffff;
+color:black;
+}
+
+/* VIDEO GRID */
+
+.video-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.video-card{
+background:#0f172a;
+border-radius:20px;
+overflow:hidden;
+transition:0.4s;
+cursor:pointer;
+border:1px solid #00ffff22;
+}
+
+.video-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 20px #00ffff55;
+}
+
+.thumbnail{
+position:relative;
+}
+
+.thumbnail img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.duration{
+position:absolute;
+bottom:10px;
+right:10px;
+background:black;
+padding:5px 8px;
+border-radius:5px;
+font-size:13px;
+}
+
+.video-info{
+display:flex;
+padding:15px;
+gap:15px;
+}
+
+.channel-logo{
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.video-details h3{
+font-size:18px;
+margin-bottom:8px;
+}
+
+.video-details p{
+font-size:14px;
+color:#aaa;
+margin-bottom:4px;
+}
+
+/* FLOATING BUTTON */
+
+.upload-btn{
+position:fixed;
+bottom:25px;
+right:25px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#00ffff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+color:black;
+cursor:pointer;
+box-shadow:0 0 20px cyan;
+transition:0.3s;
+z-index:999;
+}
+
+.upload-btn:hover{
+transform:scale(1.1);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.sidebar{
+width:80px;
+}
+
+.sidebar a span{
+display:none;
+}
+
+.main{
+margin-left:80px;
+}
+
+.search-box{
+width:40%;
+}
+
+}
+
+@media(max-width:700px){
+
+.search-box{
+display:none;
+}
+
+.banner h1{
+font-size:35px;
+text-align:center;
+}
+
+.main{
+margin-left:0;
+padding:100px 15px 20px;
+}
+
+.sidebar{
+left:-100%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+TOOFAN Tube
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search videos...">
+<button>
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+
+<div class="nav-icons">
+<i class="fa-solid fa-bell"></i>
+<i class="fa-solid fa-video"></i>
+<i class="fa-solid fa-user"></i>
+</div>
+
+</nav>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<a href="#">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-fire"></i>
+<span>Trending</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-gamepad"></i>
+<span>Gaming</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-music"></i>
+<span>Music</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-film"></i>
+<span>Movies</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-clock"></i>
+<span>Watch Later</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-heart"></i>
+<span>Liked Videos</span>
+</a>
+
+<a href="#">
+<i class="fa-solid fa-user-group"></i>
+<span>Subscriptions</span>
+</a>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- BANNER -->
+
+<div class="banner">
+<h1>TOOFAN TUBE</h1>
+<p>Stream videos with futuristic neon vibes</p>
+</div>
+
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+<button>All</button>
+<button>Gaming</button>
+<button>Music</button>
+<button>Programming</button>
+<button>Technology</button>
+<button>Live</button>
+<button>AI</button>
+<button>Movies</button>
+<button>Sports</button>
+
+</div>
+
+<!-- VIDEO GRID -->
+
+<div class="video-grid">
+
+<!-- CARD 1 -->
+
+<div class="video-card">
+
+<div class="thumbnail">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop">
+<div class="duration">12:45</div>
+</div>
+
+<div class="video-info">
+
+<img class="channel-logo"
+src="https://randomuser.me/api/portraits/men/32.jpg">
+
+<div class="video-details">
+<h3>Building an AI Website in 2026</h3>
+<p>TOOFAN Tech</p>
+<p>1.2M views • 2 days ago</p>
+</div>
+
+</div>
+</div>
+
+<!-- CARD 2 -->
+
+<div class="video-card">
+
+<div class="thumbnail">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+<div class="duration">8:20</div>
+</div>
+
+<div class="video-info">
+
+<img class="channel-logo"
+src="https://randomuser.me/api/portraits/women/44.jpg">
+
+<div class="video-details">
+<h3>Top Coding Tricks You Need</h3>
+<p>Code Master</p>
+<p>950K views • 1 week ago</p>
+</div>
+
+</div>
+</div>
+
+<!-- CARD 3 -->
+
+<div class="video-card">
+
+<div class="thumbnail">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop">
+<div class="duration">20:10</div>
+</div>
+
+<div class="video-info">
+
+<img class="channel-logo"
+src="https://randomuser.me/api/portraits/men/11.jpg">
+
+<div class="video-details">
+<h3>Future of Artificial Intelligence</h3>
+<p>Neon Future</p>
+<p>2.8M views • 5 days ago</p>
+</div>
+
+</div>
+</div>
+
+<!-- CARD 4 -->
+
+<div class="video-card">
+
+<div class="thumbnail">
+<img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1200&auto=format&fit=crop">
+<div class="duration">15:33</div>
+</div>
+
+<div class="video-info">
+
+<img class="channel-logo"
+src="https://randomuser.me/api/portraits/women/12.jpg">
+
+<div class="video-details">
+<h3>Cyber Security Explained</h3>
+<p>Tech Zone</p>
+<p>700K views • 3 days ago</p>
+</div>
+
+</div>
+</div>
+
+<!-- CARD 5 -->
+
+<div class="video-card">
+
+<div class="thumbnail">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop">
+<div class="duration">18:42</div>
+</div>
+
+<div class="video-info">
+
+<img class="channel-logo"
+src="https://randomuser.me/api/portraits/men/45.jpg">
+
+<div class="video-details">
+<h3>Modern Web Design Trends</h3>
+<p>Frontend King</p>
+<p>1.9M views • 1 month ago</p>
+</div>
+
+</div>
+</div>
+
+<!-- CARD 6 -->
+
+<div class="video-card">
+
+<div class="thumbnail">
+<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
+<div class="duration">11:27</div>
+</div>
+
+<div class="video-info">
+
+<img class="channel-logo"
+src="https://randomuser.me/api/portraits/women/22.jpg">
+
+<div class="video-details">
+<h3>Learn JavaScript Fast</h3>
+<p>Code World</p>
+<p>3.1M views • 6 days ago</p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- FLOATING BUTTON -->
+
+<div class="upload-btn">
+<i class="fa-solid fa-plus"></i>
+</div>
+
+<script>
+
+const cards = document.querySelectorAll(".video-card");
+
+cards.forEach(card => {
+
+card.addEventListener("click", () => {
+
+alert("Video Player Page Coming Soon!");
+
+});
+
+});
+
+</script>
+
+</body>
+  </html>
