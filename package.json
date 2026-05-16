@@ -1,5 +1,5 @@
 {
-  "name": "toofan-tube",
+  "name": "toofan-tube-backend",
   "version": "1.0.0",
   "description": "YouTube Clone Backend",
   "main": "server.js",
